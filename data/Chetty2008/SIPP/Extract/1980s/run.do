@@ -1,0 +1,10 @@
+*global Y=85
+*do reshaper
+*global Y=86
+*do reshaper
+*global Y=87
+*do reshaper
+*global Y=88
+*do reshaper
+global Y=89
+do reshaper

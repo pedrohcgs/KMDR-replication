@@ -1,0 +1,35 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+       log:  {res}C:\Documents and Settings\!ECON-BurchGSR\Desktop\New Folder\Extract\1980s\reshaper89.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}24 May 2007, 17:23:26
+{txt}
+{com}. clear;
+{txt}
+{com}. set mem 500m;
+{txt}
+{title:Current memory allocation}
+
+{col 21}current{col 61}memory usage
+{col 5}settable{col 23}value{col 33}description{col 61}(1M = 1024k)
+{col 5}{hline 68}
+{col 5}set maxvar{col 22}{res:  5000}{col 33}max. variables allowed           1.733M
+{col 5}set memory          {res:500M}{col 33}max. data space                500.000M
+{col 5}set matsize{col 21}{res:    400}{col 33}max. RHS vars in models          1.254M
+{col 61}{hline 11}
+{col 55}         502.987M
+
+{com}. use ~/bulk/wide$Y, clear;
+{err}{p 0 4}
+file ~/bulk/wide89.dta
+not found
+{p_end}
+{txt}{search r(601):r(601);}
+
+end of do-file
+{search r(601):r(601);}
+
+end of do-file
+{search r(601):r(601);}
+
+{com}. exit, clear

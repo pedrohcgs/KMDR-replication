@@ -1,0 +1,56 @@
+*This program draws graphs of survival curves using survival data constructed by jpe_round2_v4.do and manually cut-and-pased into survival_data.dta
+
+clear
+cap log close
+set more off
+set mem 200m
+set matsize 600
+
+***0 Setup
+use ..\survival_data.dta
+set scheme s2color
+
+#delimit;
+
+foreach num of numlist 1/4 {;
+   label var avgwba_qtile_1_nq`num' "Avg. UI benefit below mean";
+   label var avgwba_qtile_2_nq`num' "Avg. UI benefit above mean";
+};
+
+#delimit;
+
+*Graph 1a: Survival curves by WBA for netliq q1;
+twoway scatter avgwba_qtile_1_nq1 week, c(l) clcolor(navy) clstyle(solid) mfcolor(navy) mlcolor(navy) msize(vsmall) || scatter avgwba_qtile_2_nq1 week, c(l) msize(vsmall) msymbol(none) clstyle(solid) clcolor(red)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed") ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 1a) subtitle("Effect of UI Benefits on Durations: Lowest Quartile of Net Wealth") graphregion(fcolor(white));
+graph save ..\graph1a, replace;
+
+*Graph 1b: Survival curves by WBA for netliq q2;
+twoway scatter avgwba_qtile_1_nq2 week, c(l) clcolor(navy) clstyle(solid) mfcolor(navy) mlcolor(navy) msize(vsmall) || scatter avgwba_qtile_2_nq2 week, c(l) msize(vsmall) msymbol(none) clstyle(solid) clcolor(red)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed") ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 1b) subtitle("Effect of UI Benefits on Durations: Second Quartile of Net Wealth") graphregion(fcolor(white));
+graph save ..\graph1b, replace;
+
+*Graph 1c: Survival curves by WBA for netliq q3;
+twoway scatter avgwba_qtile_1_nq3 week, c(l) clcolor(navy) clstyle(solid) mfcolor(navy) mlcolor(navy) msize(vsmall) || scatter avgwba_qtile_2_nq3 week, c(l) msize(vsmall) msymbol(none) clstyle(solid)clcolor(red)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed")  ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 1c) subtitle("Effect of UI Benefits on Durations: Third Quartile of Net Wealth") graphregion(fcolor(white));
+graph save ..\graph1c, replace;
+
+*Graph 1d: Survival curves by WBA for netliq q4;
+twoway scatter avgwba_qtile_1_nq4 week, c(l) clcolor(navy) clstyle(solid) mfcolor(navy) mlcolor(navy) msize(vsmall) || scatter avgwba_qtile_2_nq4 week, c(l) msize(vsmall) msymbol(none) clstyle(solid)clcolor(red)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed")  ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 1d) subtitle("Effect of UI Benefits on Durations: Highest Quartile of Net Wealth") graphregion(fcolor(white));
+graph save ..\graph1d, replace;
+
+*Graph 2a: Survival curves by WBA for hasmortg1;
+twoway scatter hasmortg1_lb week, c(l) msize(vsmall) || scatter hasmortg1_hb week, c(l) msize(vsmall) msymbol(none) clstyle(solid)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed")  ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 3a) subtitle("Effect of UI Benefits on Durations: Households with Mortgages") graphregion(fcolor(white));
+graph save ..\graph3a, replace;
+
+*Graph 2b: Survival curves by WBA for hasmortg0;
+twoway scatter hasmortg0_lb week, c(l) msize(vsmall) || scatter hasmortg0_hb week, c(l) msize(vsmall) msymbol(none) clstyle(solid)
+   xtitle("Weeks Unemployed") ytitle("Fraction Unemployed")  ylabel(#5, grid) ymtick(##2, grid) xmtick(##2, grid)
+   title(Figure 3b) subtitle("Effect of UI Benefits on Durations: Households without Mortgages") graphregion(fcolor(white));
+graph save ..\graph3b, replace;
