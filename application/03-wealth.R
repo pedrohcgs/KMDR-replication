@@ -19,8 +19,14 @@ kmdr.clog.below.median <- kmdr(spec.kmdr,
                                x = TRUE,
                                t.threshold = tev)
 
-kmdr.clog.ame.below.median <- av.margin.kmdr(kmdr.clog.below.median, 
-                                             nboot = nboot)
+kmdr.clog.ame.below.median <- av.margin.kmdr(fit = kmdr.clog.below.median, 
+                                             nboot = nboot,
+                                             inf_function = TRUE)
+
+# 
+# # test slope coefficients are constant
+# kmdr.clog.below.median.const_test <- kmdr_const_test(kmdr.clog.below.median)
+
 
 #Estimate the parameters of interest Proportional Hazard
 cox.below.median <- survival::coxph(spec.cox,
@@ -38,8 +44,14 @@ kmdr.clog.above.median <- kmdr(spec.kmdr,
                                x = TRUE,
                                t.threshold = tev)
 
-kmdr.clog.ame.above.median <- av.margin.kmdr(kmdr.clog.above.median, 
-                                             nboot = nboot)
+kmdr.clog.ame.above.median <- av.margin.kmdr(fit = kmdr.clog.above.median, 
+                                             nboot = nboot,
+                                             inf_function = TRUE)
+
+
+# # test slope coefficients are constant
+# kmdr.clog.above.median.const_test <- kmdr_const_test(kmdr.clog.above.median)
+
 
 #Estimate the parameters of interest Proportional Hazard
 cox.above.median <- survival::coxph(spec.cox,

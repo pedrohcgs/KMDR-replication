@@ -14,7 +14,8 @@ av.margin.kmdr <- function(fit,
                            ci = 90,
                            standardize = FALSE,
                            center = FALSE,
-                           probs.min = 1e-8){
+                           probs.min = 1e-8,
+                           inf_function = FALSE){
   if (!inherits(fit, "kmdr")){ 
     stop("fit argument must be a kmdr object")
   }
@@ -243,6 +244,11 @@ av.margin.kmdr <- function(fit,
     # derivative of phi(x'b), where phi is the normal CDF
     mkmdr <-  base::rowSums(fit$coefficients[coeff,] *
                               t(stats::dnorm(as.matrix(xx) %*% fit$coefficients))) / n
+    
+    if(inference == TRUE){
+      stop("We currently do not support probit link function for inference procedures.")
+      
+    }
   }
   
   if (fit$link == "cloglog"){
@@ -421,6 +427,12 @@ av.margin.kmdr <- function(fit,
       
     }
   }
+  
+  influence_function <- NULL
+  
+  if(inf_function == TRUE) {
+    influence_function <- lin.rep.adme
+  }
   #-----------------------------------------------------------------------------
   #return adme, it's upper and lower bound as well as the ci level.
   return(list(adme = mkmdr, 
@@ -429,6 +441,7 @@ av.margin.kmdr <- function(fit,
               adme.uniform.lb = unif.lb, 
               adme.uniform.ub = unif.ub,
               #singular.test = singular.test,
-              ci = ci))
+              ci = ci,
+              influence_function = influence_function))
   
 }

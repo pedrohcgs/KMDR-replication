@@ -9,5 +9,6 @@ source(here("application/01-R-prep.R"))
 source(here("application/02-pooled.R"))
 source(here("application/03-wealth.R"))
 source(here("application/04-mortgage.R"))
-source(here("application/05-plots.R"))
+source(here("application/05-hyp_tests.R"))
+source(here("application/06-plots.R"))
 #-----------------------------------------------------------------------------

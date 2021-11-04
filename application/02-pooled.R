@@ -18,15 +18,18 @@ kmdr.clog <- kmdr(spec.kmdr,
                   x = TRUE,
                   t.threshold = tev)
 
-kmdr.clog.ame <- av.margin.kmdr(kmdr.clog, 
+kmdr.clog.ame <- av.margin.kmdr(fit = kmdr.clog, 
                                 nboot = nboot)
+
+# # test slope coefficients are constant
+# kmdr.clog.const_test <- kmdr_const_test(kmdr.clog)
 #-----------------------------------------------------------------------------
 #Estimate the parameters of interest Proportional Hazard
 cox <- survival::coxph(spec.cox,
                        data = ui,
                        x = TRUE)
 cox.ame <- av.margin.cox(cox)(tev)
-# test proportionality assumption
+# test proportionality assumption using the Schoenfeld residuals
 cox.zph(cox)
 #-----------------------------------------------------------------------------
 # Save results
