@@ -6,6 +6,8 @@
 # Clear memory
 rm(list=ls())
 #-----------------------------------------------------------------------------
+start_time <- Sys.time()
+#-----------------------------------------------------------------------------
 #-----------------------------------------------------------------------------
 # Basic parameters of the simulation - Doesn't change over setups
 nrep <- 1000        # Monte Carlo replications
@@ -69,8 +71,11 @@ for (dgp in 1:3){
     }
   }
 }
+end_time <- Sys.time()
+end_time - start_time
 #-----------------------------------------------------------------------------
 # Create the plots and tables
 source(here("simulations/aux_functions/table_dgp1.R"))
 source(here("simulations/aux_functions/table_dgp2.R"))
 source(here("simulations/aux_functions/table_dgp3.R"))
+#-----------------------------------------------------------------------------
