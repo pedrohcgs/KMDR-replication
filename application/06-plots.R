@@ -305,7 +305,7 @@ het_wealth<- ggplot(adme.w.het, aes(x=tev, y=kmdr.clog, group=1))+
   theme(legend.position="bottom")+
   theme(plot.title = element_text(color="darkgray", face="bold", size=10)) + 
   theme(axis.title = element_text(color="black",  size=8))+
-  ggtitle("(a) Difference of ADME betweet workers \nwith net wealth below and above the median")+
+  ggtitle("(a) Difference of ADME between workers \nwith net wealth below and above the median")+
   guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
          colour=guide_legend(keywidth = 4, keyheight = 1))
 #-----------------------------------------------------------------------------
@@ -330,7 +330,7 @@ het_mortgage<- ggplot(adme.m.het, aes(x=tev, y=kmdr.clog, group=1))+
   theme(legend.position="bottom")+
   theme(plot.title = element_text(color="darkgray", face="bold", size=10)) + 
   theme(axis.title = element_text(color="black",  size=8))+
-  ggtitle("(b) Difference of ADME betweet workers \nwith and without mortgage")+
+  ggtitle("(b) Difference of ADME between workers \nwith and without mortgage")+
   guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
          colour=guide_legend(keywidth = 4, keyheight = 1))
 #-----------------------------------------------------------------------------
